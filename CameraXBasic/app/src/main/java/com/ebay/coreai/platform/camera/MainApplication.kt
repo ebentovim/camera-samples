@@ -1,4 +1,4 @@
-package com.android.example.cameraxbasic
+package com.ebay.coreai.platform.camera
 
 import android.app.Application
 import android.util.Log

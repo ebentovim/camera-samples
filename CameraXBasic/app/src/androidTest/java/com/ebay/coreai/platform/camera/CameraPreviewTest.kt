@@ -1,4 +1,4 @@
-package com.android.example.cameraxbasic
+package com.ebay.coreai.platform.camera
 
 import android.Manifest
 import android.content.Context

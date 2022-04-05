@@ -1,15 +1,13 @@
-package com.android.example.cameraxbasic.utils
+package com.ebay.coreai.platform.camera.utils
 
 import android.content.Context
-import android.os.Bundle
 import android.util.AttributeSet
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
 import android.widget.HorizontalScrollView
-import com.android.example.cameraxbasic.databinding.FragmentCameraBinding
+import com.ebay.coreai.platform.camera.lenses.LensView
+
+private const val TAG = "LensesScrollView"
 
 class ObservableHorizontalScrollView(context: Context?, attrs: AttributeSet?, defStyle: Int) :
     HorizontalScrollView(context, attrs, defStyle) {
@@ -27,6 +25,7 @@ class ObservableHorizontalScrollView(context: Context?, attrs: AttributeSet?, de
         }
     }
 
+    private var lensViews = mutableListOf<LensView>()
     private var mIsScrolling = false
     private var mIsTouching = false
     private var mScrollingRunnable: Runnable? = null
@@ -34,7 +33,7 @@ class ObservableHorizontalScrollView(context: Context?, attrs: AttributeSet?, de
 
     constructor(context: Context?) : this(context, null, 0)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0) {
-        Log.d("Scroll touch", "constructor")
+        Log.d(TAG, "initializing")
     }
 
     override fun onTouchEvent(ev: MotionEvent): Boolean {
@@ -76,5 +75,10 @@ class ObservableHorizontalScrollView(context: Context?, attrs: AttributeSet?, de
         if (onScrollListener != null) {
             onScrollListener!!.onScrollChanged(this, x, y, oldX, oldY)
         }
+    }
+
+    fun registerLens(lens: LensView) {
+        Log.d(TAG, "Added lens ID ${lens.id}")
+        lensViews.add(lens)
     }
 }
